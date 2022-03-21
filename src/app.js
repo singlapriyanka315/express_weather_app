@@ -1,7 +1,7 @@
 const express= require('express');
 const app= express();
 const path = require('path');
-const port=8000;
+const port = process.env.PORT || 8000;
 const hbs= require('hbs');
 
 //public static path
@@ -16,9 +16,6 @@ hbs.registerPartials(partials_path);
 app.use(express.static(static_path))
 
 //routing 
-
-
-
 app.get("/",(req,res)=>{
     res.render("index");
 })
@@ -37,10 +34,6 @@ app.get("*",(req,res)=>{
         err:`The page you are looking for appears to have been moved, deleted,or does not exist.`
     });
 })
-
-
-
-
 
 app.listen(port,()=>{
     console.log(`listening to the port at ${port}`);
